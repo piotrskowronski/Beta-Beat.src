@@ -113,8 +113,9 @@ def run_test_case(test_case, valid_path, test_path):
         result = TestResult(test_case, valid_result, test_result,
                             valid_outpath, test_outpath)
     finally:
-        _remove_if_exists(valid_outpath)
-        _remove_if_exists(test_outpath)
+        pass
+        #_remove_if_exists(valid_outpath)
+        #_remove_if_exists(test_outpath)
     return result
 
 
@@ -273,7 +274,7 @@ def _launch_command(repo_root, script, args):
     if isinstance(args, str):
         args = args.split(" ")
     comm = subprocess.Popen([_PYTHON] + [script] + args,
-                            stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                            #stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                             cwd=repo_root)
     stdout, stderr = comm.communicate()
     raised = comm.returncode != 0
@@ -291,4 +292,5 @@ def _temporary_dir():
         dir_path = tempfile.mkdtemp()
         yield dir_path
     finally:
-        shutil.rmtree(dir_path)
+        pass
+        # shutil.rmtree(dir_path)

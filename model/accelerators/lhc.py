@@ -277,6 +277,12 @@ class Lhc(Accelerator):
         if os.path.isfile(best_knowledge_path):
             self._model_best_knowledge = tfs_pandas.read_tfs(best_knowledge_path, index="NAME")
 
+        # Best Knowledge Elements #####################################
+        self._model_best_knowledge_elements = None
+        best_knowledge_path = os.path.join(model_dir, "twiss_elements_best_knowledge.dat")
+        if os.path.isfile(best_knowledge_path):
+            self._model_best_knowledge = tfs_pandas.read_tfs(best_knowledge_path, index="NAME")
+
         # Elements #####################################
         elements_path = os.path.join(model_dir, "twiss_elements.dat")
         if os.path.isfile(elements_path):
@@ -619,6 +625,11 @@ class Lhc(Accelerator):
         if self._model_best_knowledge is None:
             raise AttributeError("No best knowledge model given in this accelerator instance.")
         return self._model_best_knowledge
+
+    def get_elements_best_knowledge_model_tfs(self):
+        if self._model_best_knowledge_elements is None:
+            raise AttributeError("No best knowledge elements model given in this accelerator instance.")
+        return self._model_best_knowledge_elements
 
     def get_elements_tfs(self):
         return self._elements

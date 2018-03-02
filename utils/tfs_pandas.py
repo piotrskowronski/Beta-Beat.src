@@ -124,7 +124,7 @@ def read_tfs(tfs_path, index=None):
 
     if index is not None:
         # Use given column as index
-        data_frame = data_frame.set_index(index)
+        data_frame = data_frame.set_index(index, drop=False)
     else:
         # Try to find Index automatically
         index_column = [c for c in data_frame.columns if c.startswith(INDEX_ID)]
